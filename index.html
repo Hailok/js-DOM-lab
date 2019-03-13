@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="task-1">
+    <label><input type="text" id="far"> °F</label>
+    <br>
+    <label><input type="text" id="cel"> °С</label>
+  
+    <style>
+      #task-1 {
+        height: 75px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    </style>
+
+    <script>
+      function translation (value, name) {
+        if (name == "far") return (value - 32) * 5/9;
+        if (name == "cel") return (value * 9/5) + 32;
+      }
+
+      document.querySelector("#far").oninput = function () {
+        var value = document.querySelector("#far").value;
+        document.querySelector("#cel").value = translation(value, "far");
+      }
+
+      document.querySelector("#cel").oninput = function () {
+        var value = document.querySelector("#cel").value;
+        document.querySelector("#far").value = translation(value, "cel");
+      }
+    </script>
+  </div>
+
+  <div id="task-2">
+    <label><input type="text" id="dlina"> длина</label>
+    <br>
+    <label><input type="text" id="shirina"> ширина</label>
+    <br>
+    <label id="perimetr">Периметр: <span></span></label>
+    <label id="ploshad">Площадь: <span></span></label>
+    <label id="diagonal">Длина диагонали: <span></span></label>
+  
+    <style>
+      #task-2 {
+        height: 200px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+    </style>
+
+    <script>
+      document.getElementById("dlina").oninput = 
+      document.getElementById("shirina").oninput = function () {
+        if (document.getElementById("dlina").value != "" && document.getElementById("shirina").value) calculated();
+      }
+
+      function calculated() {
+        var dlina = +document.getElementById("dlina").value;
+        var shirina = +document.getElementById("shirina").value;
+
+        document.querySelector("#perimetr span").innerHTML = dlina * 2 + shirina *2;
+        document.querySelector("#ploshad span").innerHTML = dlina * shirina;
+        document.querySelector("#diagonal span").innerHTML = Math.sqrt(Math.pow(dlina, 2) + Math.pow(shirina, 2));
+      }
+    </script>
+  </div>
+
+</body>
+</html>
