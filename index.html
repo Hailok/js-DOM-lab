@@ -7,13 +7,13 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="task-1">
-    <label><input type="text" id="far"> °F</label>
+  <div class="task-1">
+    <label><input type="text" class="far"> °F</label>
     <br>
-    <label><input type="text" id="cel"> °С</label>
+    <label><input type="text" class="cel"> °С</label>
   
     <style>
-      #task-1 {
+      .task-1 {
         height: 75px;
         margin: 10px;
         padding: 20px;
@@ -30,29 +30,29 @@
         if (name == "cel") return (value * 9/5) + 32;
       }
 
-      document.querySelector("#far").oninput = function () {
-        var value = document.querySelector("#far").value;
-        document.querySelector("#cel").value = translation(value, "far");
+      document.querySelector(".task-1 .far").oninput = function () {
+        var value = document.querySelector(".task-1 .far").value;
+        document.querySelector(".task-1 .cel").value = translation(value, "far");
       }
 
-      document.querySelector("#cel").oninput = function () {
-        var value = document.querySelector("#cel").value;
-        document.querySelector("#far").value = translation(value, "cel");
+      document.querySelector(".task-1 .cel").oninput = function () {
+        var value = document.querySelector(".task-1 .cel").value;
+        document.querySelector(".task-1 .far").value = translation(value, "cel");
       }
     </script>
   </div>
 
-  <div id="task-2">
-    <label><input type="text" id="dlina"> длина</label>
+  <div class="task-2">
+    <label><input type="text" class="dlina"> длина</label>
     <br>
-    <label><input type="text" id="shirina"> ширина</label>
+    <label><input type="text" class="shirina"> ширина</label>
     <br>
-    <label id="perimetr">Периметр: <span></span></label>
-    <label id="ploshad">Площадь: <span></span></label>
-    <label id="diagonal">Длина диагонали: <span></span></label>
+    <label class="perimetr">Периметр: <span></span></label>
+    <label class="ploshad">Площадь: <span></span></label>
+    <label class="diagonal">Длина диагонали: <span></span></label>
   
     <style>
-      #task-2 {
+      .task-2 {
         height: 200px;
         margin: 10px;
         padding: 20px;
@@ -64,18 +64,130 @@
     </style>
 
     <script>
-      document.getElementById("dlina").oninput = 
-      document.getElementById("shirina").oninput = function () {
-        if (document.getElementById("dlina").value != "" && document.getElementById("shirina").value) calculated();
+      document.querySelector(".task-2 .dlina").oninput = 
+      document.querySelector(".task-2 .shirina").oninput = function () {
+        if (document.querySelector(".task-2 .dlina").value != "" && document.querySelector(".task-2 .shirina").value) calculated();
       }
 
       function calculated() {
-        var dlina = +document.getElementById("dlina").value;
-        var shirina = +document.getElementById("shirina").value;
+        var dlina = +document.querySelector(".task-2 .dlina").value;
+        var shirina = +document.querySelector(".task-2 .shirina").value;
 
-        document.querySelector("#perimetr span").innerHTML = dlina * 2 + shirina *2;
-        document.querySelector("#ploshad span").innerHTML = dlina * shirina;
-        document.querySelector("#diagonal span").innerHTML = Math.sqrt(Math.pow(dlina, 2) + Math.pow(shirina, 2));
+        document.querySelector(".perimetr span").innerHTML = dlina * 2 + shirina *2;
+        document.querySelector(".ploshad span").innerHTML = dlina * shirina;
+        document.querySelector(".diagonal span").innerHTML = Math.sqrt(Math.pow(dlina, 2) + Math.pow(shirina, 2));
+      }
+    </script>
+  </div>
+
+  <div class="task-3">
+    <img src="" alt="" class="img">
+    <div class="buttons">
+      <button class="previous">Назад</button>
+      <button class="next">Вперёд</button>
+    </div>
+
+    <style>
+      .task-3 {
+        height: 300px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .task-3 .img {
+        width: 250px;
+        height: 250px;
+      }
+
+      .task-3 .buttons {
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+
+    <script>
+      var count = 1;
+      function imgChange (step) {
+        var pathImgs = 'img/task-3/';
+        var imgs = ['img1.jpg','img2.jpg','img3.jpg'];
+
+        switch (step) {
+          case "next": 
+            count == imgs.length ? count = 1 : count++;
+            break;
+          case "previous":
+            count == 1 ? count = imgs.length : count--;
+            break;
+        }
+
+        document.querySelector("img").setAttribute("src", pathImgs + imgs[count - 1]);
+      }
+      
+      document.querySelector(".task-3 .buttons .previous").onclick = function () {
+        imgChange("previous");
+      };
+
+      document.querySelector(".task-3 .buttons .next").onclick = function () {
+        imgChange("next");
+      };
+
+      imgChange();
+
+    </script>
+  </div>
+
+  <div class="task-4">
+    <div class="imgs">
+      <div class="img-min">
+
+      </div>
+      <img src="" alt="" class="img">
+    </div>
+
+    <style>
+      .task-4 {
+        height: 300px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .task-4 .imgs {
+        border: 1px solid black;
+        width: 250px;
+        height: 300px;
+      }
+
+      .task-4 .imgs .img-min {
+        border-bottom: 1px solid black;
+        height: 50px;
+      }
+
+      .task-4 .imgs .img-min img {
+        width: 50px;
+        margin-right: 5px;
+      }
+    </style>
+
+    <script>
+      var pathImgs = 'img/task-3/';
+      var imgs = ['img1.jpg','img2.jpg','img3.jpg'];
+
+      for (var i = 0; i < imgs.length; i++) {
+        var img_min = document.createElement("img");
+        img_min.setAttribute("src", pathImgs + imgs[i]);
+        img_min.onclick = function () {
+          document.querySelector(".task-4 .img").setAttribute("src", this.getAttribute("src"));
+        };
+        document.querySelector(".task-4 .imgs .img-min").appendChild(img_min);
       }
     </script>
   </div>
